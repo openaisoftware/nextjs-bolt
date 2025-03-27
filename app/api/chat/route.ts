@@ -56,7 +56,7 @@ async function chatAction(request: NextRequest) {
         'Content-Type': 'text/plain; charset=utf-8',
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
 
     return new NextResponse(null, {

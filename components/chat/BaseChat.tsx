@@ -1,6 +1,5 @@
 "use client"
-import type { Message } from 'ai';
-import React, { type RefCallback, useEffect, useRef, useState } from 'react';
+import React, { type RefCallback, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { Messages } from './Messages';
 import { ChatInput } from './ChatInput';
@@ -10,6 +9,7 @@ import { Workbench } from '@/components/workbench/Workbench';
 import { CaretDown } from '@phosphor-icons/react';
 import ChatAlert from './ChatAlert';
 import { ActionAlert } from '@/types/actions';
+import { JSONValue } from '../../types/json';
 
 interface BaseChatProps {
   textareaRef?: React.RefObject<HTMLTextAreaElement> | undefined;
@@ -56,8 +56,6 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
     },
     ref,
   ) => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const scrollToBottom = () => {
@@ -68,7 +66,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
       if (isStreaming) { // Only scroll to bottom if isStreaming is true
         scrollToBottom();
       }
-    }, [messages, isStreaming]);
+    }, [messages, isStreaming, scrollToBottom]);
 
     return (
       <div
@@ -99,7 +97,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     <Messages
                       ref={messageRef}
                       className="flex flex-col w-full flex-1 max-w-2xl px-2 sm:px-4 pb-4 sm:pb-6 mx-auto z-1"
-                      messages={(messages || []).map((message: { role: string; content: any; data: any; }) => {
+                      messages={(messages || []).map((message: { role: string; content: any; data: JSONValue; }) => {
                         if (message.role === 'user' && typeof message.content !== 'string' && typeof message.data !== 'string') {
                           return {
                             ...message,
@@ -164,3 +162,5 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
     );
   },
 );
+
+BaseChat.displayName = 'BaseChat';

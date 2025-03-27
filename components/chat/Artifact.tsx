@@ -94,6 +94,8 @@ export const Artifact = memo(({ messageId }: ArtifactProps) => {
   );
 });
 
+Artifact.displayName = 'Artifact';
+
 interface ShellCodeBlockProps {
   classsName?: string;
   code: string;
@@ -177,6 +179,8 @@ const ActionList = memo(({ actions }: ActionListProps) => {
     </motion.div>
   );
 });
+
+ActionList.displayName = 'ActionList';
 
 function getIconColor(status: ActionState['status']) {
   switch (status) {

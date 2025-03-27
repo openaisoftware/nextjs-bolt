@@ -322,3 +322,5 @@ export const ChatImpl = memo(({ initialMessages, storeMessageHistory }: ChatProp
     />
   );
 });
+
+ChatImpl.displayName = 'ChatImpl';

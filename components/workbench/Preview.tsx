@@ -123,3 +123,5 @@ export const Preview = memo(() => {
     </div>
   );
 });
+
+Preview.displayName = 'Preview';

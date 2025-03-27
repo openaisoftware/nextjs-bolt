@@ -240,6 +240,8 @@ export const Workbench = memo(({ chatStarted, isStreaming, className }: Workspac
   return workbenchInstance;
 });
 
+Workbench.displayName = 'Workbench';
+
 interface ViewProps extends HTMLMotionProps<'div'> {
   children: JSX.Element;
 }

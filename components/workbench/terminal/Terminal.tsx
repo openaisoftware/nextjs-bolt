@@ -103,3 +103,5 @@ export const Terminal = memo(
     return <div className={className} ref={terminalElementRef} />;
   }),
 );
+
+Terminal.displayName = 'Terminal';

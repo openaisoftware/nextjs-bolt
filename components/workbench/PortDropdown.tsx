@@ -82,3 +82,5 @@ export const PortDropdown = memo(
     );
   },
 );
+
+PortDropdown.displayName = 'PortDropdown';
